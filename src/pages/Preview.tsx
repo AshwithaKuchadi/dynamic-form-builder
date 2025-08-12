@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -96,7 +96,7 @@ function evaluateFormula(
       const re = new RegExp(`\\b${key}\\b`, "g");
       evalStr = evalStr.replace(re, String(safeVal));
     }
-    // eslint-disable-next-line no-eval
+
     const result = eval(evalStr);
     if (
       result === undefined ||
