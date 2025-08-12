@@ -14,7 +14,6 @@ import type { RootState, AppDispatch } from "../store";
 import {
   Button,
   List,
-  ListItem,
   TextField,
   Select,
   MenuItem,
@@ -159,9 +158,16 @@ export default function FormBuilder() {
                 "&:hover": { boxShadow: 8 },
               }}
             >
-              <Grid container spacing={2} alignItems="center">
+              <Grid
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(12, 1fr)",
+                  gap: 16,
+                  alignItems: "center",
+                }}
+              >
                 {/* Field Label and Controls */}
-                <Grid item xs={12} sm={5}>
+                <Box sx={{ gridColumn: { xs: "span 12", sm: "span 5" } }}>
                   <TextField
                     label="Field Label"
                     value={field.label}
@@ -176,18 +182,23 @@ export default function FormBuilder() {
                     }
                     fullWidth
                   />
-                </Grid>
+                </Box>
 
-                <Grid item xs={6} sm={2} sx={{ textTransform: "capitalize" }}>
+                <Box
+                  sx={{
+                    gridColumn: { xs: "span 6", sm: "span 2" },
+                    textTransform: "capitalize",
+                  }}
+                >
                   <Typography
                     variant="subtitle1"
                     sx={{ fontWeight: "medium", color: "text.secondary" }}
                   >
                     {field.type}
                   </Typography>
-                </Grid>
+                </Box>
 
-                <Grid item xs={6} sm={2}>
+                <Box sx={{ gridColumn: { xs: "span 6", sm: "span 2" } }}>
                   <FormControlLabel
                     control={
                       <Switch
@@ -201,13 +212,15 @@ export default function FormBuilder() {
                     label="Required"
                     labelPlacement="start"
                   />
-                </Grid>
+                </Box>
 
-                <Grid
-                  item
-                  xs={12}
-                  sm={3}
-                  sx={{ display: "flex", justifyContent: "flex-end", gap: 1 }}
+                <Box
+                  sx={{
+                    gridColumn: { xs: "span 12", sm: "span 3" },
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    gap: 1,
+                  }}
                 >
                   <IconButton
                     onClick={() => moveField(index, -1)}
@@ -237,10 +250,10 @@ export default function FormBuilder() {
                   >
                     <DeleteIcon />
                   </IconButton>
-                </Grid>
+                </Box>
 
                 {/* Default Value */}
-                <Grid item xs={12}>
+                <Box sx={{ gridColumn: "span 12" }}>
                   <TextField
                     label="Default Value"
                     size="small"
@@ -255,10 +268,10 @@ export default function FormBuilder() {
                       )
                     }
                   />
-                </Grid>
+                </Box>
 
                 {/* Validation Section */}
-                <Grid item xs={12}>
+                <Box sx={{ gridColumn: "span 12" }}>
                   <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
                     Validation Rules
                   </Typography>
@@ -369,10 +382,10 @@ export default function FormBuilder() {
                       </>
                     )}
                   </Box>
-                </Grid>
+                </Box>
 
                 {/* Derived Field Section */}
-                <Grid item xs={12}>
+                <Box sx={{ gridColumn: "span 12" }}>
                   <Divider sx={{ my: 2 }} />
                   <FormControlLabel
                     control={
@@ -476,7 +489,7 @@ export default function FormBuilder() {
                       />
                     </>
                   )}
-                </Grid>
+                </Box>
               </Grid>
             </Paper>
           );

@@ -1,4 +1,3 @@
-// src/pages/MyForms.tsx
 import React, { useEffect, useState } from "react";
 import {
   Box,
@@ -11,14 +10,41 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+interface FormField {
+  id: string;
+  label: string;
+  type: string;
+  required?: boolean;
+  defaultValue?: string | number | boolean;
+  validation?: {
+    notEmpty?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    email?: boolean;
+    passwordRule?: boolean;
+  };
+  isDerived?: boolean;
+  derivedConfig?: {
+    parentIds: string[];
+    formula: string;
+  };
+}
+
+interface FormData {
+  name: string;
+  createdAt: string;
+  schema?: FormField[];
+}
+
 export default function MyForms() {
-  const [forms, setForms] = useState([]);
+  const [forms, setForms] = useState<FormData[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const savedFormsJSON = localStorage.getItem("savedForms");
     if (savedFormsJSON) {
-      setForms(JSON.parse(savedFormsJSON));
+      const parsed: FormData[] = JSON.parse(savedFormsJSON);
+      setForms(parsed);
     }
   }, []);
 

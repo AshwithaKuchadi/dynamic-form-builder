@@ -1,12 +1,10 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
-import { pink } from "@mui/material/colors";
 
 export default function Home() {
   return (
     <Box
       sx={{
-        height: "calc(100vh - 64px)", // full viewport height minus navbar height (64px)
+        height: "calc(100vh - 64px)",
         pt: "64px",
         display: "flex",
         justifyContent: "center",
