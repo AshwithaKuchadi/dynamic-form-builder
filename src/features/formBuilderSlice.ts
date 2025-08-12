@@ -20,8 +20,8 @@ interface ValidationRules {
 }
 
 interface DerivedConfig {
-  parentIds: string[];
-  formula: string;
+  parentIds?: string[];
+  formula?: string;
 }
 
 interface Field {
